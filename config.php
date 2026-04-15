@@ -1,23 +1,26 @@
-
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
 
-define('DB_HOST', 'mysql.railway.internal');
-define('DB_USER', 'root');
-define('DB_PASS', 'IokzclJLScDRlEIeYfRatbfgvscliWxl');
-define('DB_NAME', 'railway');
-
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-
-try {
-    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-} catch (mysqli_sql_exception $e) {
-    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS);
-    $conn->query("CREATE DATABASE IF NOT EXISTS " . DB_NAME);
-    $conn->select_db(DB_NAME);
+if (getenv('DB_HOST')) {
+    $db_host = getenv('DB_HOST');
+    $db_user = getenv('DB_USER');
+    $db_pass = getenv('DB_PASS');
+    $db_name = getenv('DB_NAME');
+} else {
+    $db_host = 'mysql.railway.internal';
+    $db_user = 'root';
+    $db_pass = 'IokzclJLScDRlEIeYfRatbfgvscliWxl';
+    $db_name = 'railway';
 }
 
-// Updated table with new fields
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+
+if ($conn->connect_error) {
+    die("DB Connection failed: " . $conn->connect_error);
+}
+
 $conn->query("
     CREATE TABLE IF NOT EXISTS users (
         id INT AUTO_INCREMENT PRIMARY KEY,
