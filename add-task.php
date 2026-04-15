@@ -4,14 +4,11 @@ require_once 'auth.php';
 requireLogin();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title = trim($_POST['title'] ?? '');
-    $description = trim($_POST['description'] ?? '');
-    $start_date = !empty($_POST['start_date']) ? $_POST['start_date'] : null;
-    $end_date = !empty($_POST['end_date']) ? $_POST['end_date'] : null;
+    $task_id = $_POST['task_id'] ?? 0;
     
-    if (!empty($title)) {
-        $stmt = $conn->prepare("INSERT INTO tasks (user_id, title, description, start_date, end_date) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("issss", $_SESSION['user_id'], $title, $description, $start_date, $end_date);
+    if (isset($_POST['toggle'])) {
+        $stmt = $conn->prepare("UPDATE tasks SET completed = NOT completed WHERE id = ? AND user_id = ?");
+        $stmt->bind_param("ii", $task_id, $_SESSION['user_id']);
         $stmt->execute();
     }
 }
