@@ -1,5 +1,6 @@
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -24,6 +25,8 @@ $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 if ($conn->connect_error) {
     die("DB Connection failed: " . $conn->connect_error);
 =======
+=======
+>>>>>>> parent of 6089583 (fix)
 session_start();
 
 define('DB_HOST', 'localhost');

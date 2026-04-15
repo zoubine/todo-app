@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 6089583 (fix)
 <?php
 require_once 'config.php';
 
