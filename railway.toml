@@ -2,5 +2,5 @@
 builder = "NIXPACKS"
 
 [deploy]
-startCommand = "./start.sh"
+startCommand = "php-fpm8.1 -D && nginx -g 'daemon off;'"
 restartPolicyType = "ALWAYS"
