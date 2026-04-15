@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-define('DB_HOST', 'localhost');
+define('DB_HOST', 'mysql.railway.internal');
 define('DB_USER', 'root');
 define('DB_PASS', 'IokzclJLScDRlEIeYfRatbfgvscliWxl');
-define('DB_NAME', 'todo_app');
+define('DB_NAME', 'railway');
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
