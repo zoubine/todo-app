@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -22,6 +23,23 @@ $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
 if ($conn->connect_error) {
     die("DB Connection failed: " . $conn->connect_error);
+=======
+session_start();
+
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', 'IokzclJLScDRlEIeYfRatbfgvscliWxl');
+define('DB_NAME', 'todo_app');
+
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+try {
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+} catch (mysqli_sql_exception $e) {
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS);
+    $conn->query("CREATE DATABASE IF NOT EXISTS " . DB_NAME);
+    $conn->select_db(DB_NAME);
+>>>>>>> parent of 2c9571d (railway)
 }
 
 $conn->query("
