@@ -1,4 +1,14 @@
 <?php
+// Force HTTPS on Railway
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'http') {
+    header("Location: https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+    exit();
+}
+
+session_start();
+// ... rest of config
+?>
+<?php
 session_start();
 
 define('DB_HOST', 'mysql.railway.internal');

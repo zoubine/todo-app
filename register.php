@@ -1,3 +1,16 @@
+
+<?php
+// Force HTTPS - MUST be first
+if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
+    $redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    header("Location: $redirect");
+    exit();
+}
+
+// Then your regular code...
+session_start();
+require_once 'config.php';
+?>
 <?php
 require_once 'config.php';
 
