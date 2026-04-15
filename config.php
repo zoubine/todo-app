@@ -3,7 +3,7 @@ session_start();
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', 'zou1738@');
+define('DB_PASS', 'IokzclJLScDRlEIeYfRatbfgvscliWxl');
 define('DB_NAME', 'todo_app');
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
