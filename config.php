@@ -1,7 +1,10 @@
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-session_start();
 
 if (getenv('DB_HOST')) {
     $db_host = getenv('DB_HOST');
@@ -9,10 +12,10 @@ if (getenv('DB_HOST')) {
     $db_pass = getenv('DB_PASS');
     $db_name = getenv('DB_NAME');
 } else {
-    $db_host = 'mysql.railway.internal';
+    $db_host = 'localhost';
     $db_user = 'root';
-    $db_pass = 'IokzclJLScDRlEIeYfRatbfgvscliWxl';
-    $db_name = 'railway';
+    $db_pass = 'zou1738@';
+    $db_name = 'todo_app';
 }
 
 $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
