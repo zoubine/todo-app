@@ -1,32 +1,15 @@
-<<<<<<< HEAD
-=======
 <?php
-// Force HTTPS on Railway
-if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'http') {
-    header("Location: https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-    exit();
-}
-
 session_start();
-// ... rest of config
-?>
->>>>>>> parent of 745d120 (fixese)
-<?php
-<<<<<<< HEAD
-<<<<<<< HEAD
-if (!isset($_SESSION)) {
-    session_start();
-}
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-if (getenv('DB_HOST')) {
-    $db_host = getenv('DB_HOST');
-    $db_user = getenv('DB_USER');
-    $db_pass = getenv('DB_PASS');
-    $db_name = getenv('DB_NAME');
+// Detect if running on Railway
+if (isset($_SERVER['RAILWAY_ENVIRONMENT']) || isset($_SERVER['RAILWAY_SERVICE_ID'])) {
+    // Railway production - HARDCODED credentials
+    $db_host = 'mysql.railway.internal';
+    $db_user = 'root';
+    $db_pass = 'IokzclJLScDRlEIeYfRatbfgvscliWxl';
+    $db_name = 'railway';
 } else {
+    // Local development
     $db_host = 'localhost';
     $db_user = 'root';
     $db_pass = 'zou1738@';
@@ -36,28 +19,10 @@ if (getenv('DB_HOST')) {
 $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
 if ($conn->connect_error) {
-    die("DB Connection failed: " . $conn->connect_error);
-=======
-=======
->>>>>>> parent of 6089583 (fix)
-session_start();
-
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', 'IokzclJLScDRlEIeYfRatbfgvscliWxl');
-define('DB_NAME', 'todo_app');
-
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-
-try {
-    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-} catch (mysqli_sql_exception $e) {
-    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS);
-    $conn->query("CREATE DATABASE IF NOT EXISTS " . DB_NAME);
-    $conn->select_db(DB_NAME);
->>>>>>> parent of 2c9571d (railway)
+    die("Connection failed: " . $conn->connect_error);
 }
 
+// Create tables
 $conn->query("
     CREATE TABLE IF NOT EXISTS users (
         id INT AUTO_INCREMENT PRIMARY KEY,

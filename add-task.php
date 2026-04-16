@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $end_date = !empty($_POST['end_date']) ? $_POST['end_date'] : null;
     
     if (!empty($title)) {
-        $stmt = $conn->prepare("INSERT INTO tasks (user_id, title, description, start_date, end_date) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO tasks (user_id, title, description, start_date, end_date, completed) VALUES (?, ?, ?, ?, ?, 0)");
         $stmt->bind_param("issss", $_SESSION['user_id'], $title, $description, $start_date, $end_date);
         $stmt->execute();
     }
