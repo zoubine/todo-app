@@ -10,10 +10,10 @@ if (isset($_SERVER['RAILWAY_ENVIRONMENT']) || isset($_SERVER['RAILWAY_SERVICE_ID
     $db_name = 'railway';
 } else {
     // Local development
-    $db_host = 'localhost';
+    $db_host = 'mysql.railway.internal';
     $db_user = 'root';
-    $db_pass = 'zou1738@';
-    $db_name = 'todo_app';
+    $db_pass = 'IokzclJLScDRlEIeYfRatbfgvscliWxl';
+    $db_name = 'railway';
 }
 
 $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
