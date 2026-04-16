@@ -42,4 +42,4 @@
             <span>Click "New Task" to get started</span>
         </div>
     <?php endif; ?>
-</div>
+    </div>
