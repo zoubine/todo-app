@@ -6,7 +6,7 @@ if (isset($_SERVER['RAILWAY_ENVIRONMENT']) || isset($_SERVER['RAILWAY_SERVICE_ID
     // Railway production - HARDCODED credentials
     $db_host = 'mysql.railway.internal';
     $db_user = 'root';
-    $db_pass = 'IokzclJLScDRlEIeYfRatbfgvscliWxl';
+    $db_pass = 'WWiRRLLGCHnUOFfsesuNayMjwvCKXeya';
     $db_name = 'railway';
 } else {
     // Local development
